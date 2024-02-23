@@ -29,14 +29,12 @@ h1 {
     font-size: 20px;
 }
 
-
 body {
     background-color: black;
     color:antiquewhite;
     font-family: arial;
     text-align: center;
 }
-
 
 /* Grid layout */
 .video-con {

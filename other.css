@@ -36,46 +36,55 @@ body {
     text-align: center;
 }
 
-.video-con { 
-    display: flex;
-    flex-wrap: wrap; /* Allow videos to wrap to the next row */
-    justify-content: flex-start; /* Align videos to the left */
-    align-items: flex-start; /* Align videos to the top */
-    padding: 15px; /* Add padding around the video container */
-}
-
-.video-wrapper {
-    flex: 1 1 calc(33.33% - 20px); /* Allow videos to grow and shrink, and set the initial width */
-    margin: 5px; /* Add margin around each video */
-    max-width: calc(33.33% - 20px); /* Set maximum width for each video to fit three videos per row */
-}
-
-.video-wrapper video {
-    max-width: 100%; /* Set maximum width for the video */
-    width: auto; /* Let the width adjust automatically based on aspect ratio */
-    max-height: 400px; /* Set maximum height for the video */
-    height: auto; /* Let the height adjust automatically based on aspect ratio */
-    border-radius: 10px; /* Rounded corners */
-}
-
-.video-wrapper a {
-    color: antiquewhite; /* Style the download link */
-    text-decoration: none; /* Remove underline */
-}
-
-@media screen and (max-width: 768px) {
-    .video-wrapper {
-        flex-basis: calc(50% - 20px); /* Two videos per row on smaller screens */
-        max-width: calc(50% - 20px); /* Set maximum width for each video to fit two videos per row */
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .video-wrapper {
-        flex-basis: calc(100% - 20px); /* One video per row on even smaller screens */
-        max-width: calc(100% - 20px); /* Set maximum width for each video to fit one video per row */
-    }
-}
+.video-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); /* Adjust the column width as needed */
+    grid-gap: 20px; /* Adjust the gap between videos */
+  }
+  
+  .video-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+  
+  .video-wrapper {
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio (height/width) */
+    position: relative;
+  }
+  
+  .video-wrapper video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .video-item:hover video {
+    transform: scale(1.05);
+  }
+  
+  .video-item::after {
+    content: '\25B6'; /* Play icon or any other overlay */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .video-item:hover::after {
+    opacity: 1;
+  }
+  
+  
 
 /* Hide the default file input button */
 input[type="file"] {
@@ -94,6 +103,7 @@ form button[type="submit"] {
     font-weight: bold; 
     margin-left: 20px;
     margin-top: 11px;
+    margin-bottom: 20px;
 }
 
 form button:hover{

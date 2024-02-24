@@ -14,22 +14,25 @@
         <button type="submit" name="submit">upload</button>
       </form>
     </div>
-    <div class="video-con" id="video-container">
-      <?php
-        $videoFolder = "uploads"; // Replace with the actual path to your video folder
+    <div class="video-gallery">
+  <?php
+    $videoFolder = "uploads"; // Replace with the actual path to your video folder
 
-        $videos = scandir($videoFolder);
-        foreach ($videos as $video) {
-          $extension = strtolower(pathinfo($video, PATHINFO_EXTENSION));
-          if ($video !== '.' && $video !== '..' && ($extension === 'mp4' || $extension === 'mov')) {
-            echo '<div class="video-wrapper">';
-            echo '<video src="' . $videoFolder . '/' . $video . '" controls></video>';
-            echo '<br>';
-            echo '<a href="' . $videoFolder . '/' . $video . '" download>' . $video . '</a>';
-            echo '</div>';
-          }
-        }
-      ?>
-    </div>
+    $videos = scandir($videoFolder);
+    foreach ($videos as $video) {
+      $extension = strtolower(pathinfo($video, PATHINFO_EXTENSION));
+      if ($video !== '.' && $video !== '..' && ($extension === 'mp4' || $extension === 'mov')) {
+        echo '<div class="video-item">';
+        echo '<div class="video-wrapper">';
+        echo '<video src="' . $videoFolder . '/' . $video . '" controls></video>';
+        echo '</div>';
+        echo '<br>';
+        echo '<a href="' . $videoFolder . '/' . $video . '" download>' . $video . '</a>';
+        echo '</div>';
+      }
+    }
+  ?>
+</div>
+
   </body>
 </html>
